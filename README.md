@@ -1,3 +1,4 @@
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -26,6 +27,53 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Sentry (https://sentry.io)
+
+yarn add @sentry/browser 
+
+Changed **SENTRY_CLIENT_DSN** for Sentry init in index.js
+
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({
+  dsn: "SENTRY_CLIENT_DSN"
+});
+ 
+Sentry.withScope(scope => {
+            Object.keys(errorInfo).forEach(key => {
+                scope.setExtra(key, errorInfo[key]);
+                scope.setExtra('userId', Math.random()*1000);
+            });
+            Sentry.captureException(error);
+});
+ 
+
+## LogRocket (https://logrocket.com)
+
+yarn add logrocket 
+
+Changed **LOGROCKET_ORGANIZATION_INFO** for LogRocket init in App.js and index.js
+
+import LogRocket from 'logrocket';
+
+LogRocket.init('LOGROCKET_ORGANIZATION_INFO');
+
+## Firebase
+
+yarn add firebase-tools
+
+firebase login
+
+firebase init
+	hosting
+	build
+
+? What do you want to use as your public directory? build
+? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+? File build/index.html already exists. Overwrite? (y/N) N
+
+firebase deploy
 
 ### `npm run eject`
 
